@@ -1,35 +1,35 @@
 package com.manning.application.notification.preferences.formatters;
 
 import com.manning.application.notification.preferences.entities.NotificationPreferences;
-import com.manning.application.notification.preferences.model.NotificationRes;
+import com.manning.application.notification.preferences.model.NotificationPreferenceRsp;
 import org.springframework.stereotype.Component;
 
 @Component
 public final class NotificationPreferencesFormatter {
 
-    public NotificationRes formatNotificationResponse(NotificationPreferences notificationPreference) {
+    public NotificationPreferenceRsp formatNotificationResponse(NotificationPreferences notificationPreference) {
         System.out.println(notificationPreference.getCustomerId());
-        NotificationRes notificationRes = new NotificationRes();
+        NotificationPreferenceRsp notificationPreferenceRsp = new NotificationPreferenceRsp();
         if (existsNotificationPreference(notificationPreference)) {
-            populateSuccessNotificationResponse(notificationPreference, notificationRes);
+            populateSuccessNotificationResponse(notificationPreference, notificationPreferenceRsp);
         } else {
-            populateErrorNotificationResponse(notificationRes);
+            populateErrorNotificationResponse(notificationPreferenceRsp);
         }
-        return notificationRes;
+        return notificationPreferenceRsp;
     }
 
-    private void populateErrorNotificationResponse(NotificationRes notificationRes) {
-        notificationRes.setStatus("ERROR");
-        notificationRes.setStatusDescription("Notification Failed");
+    private void populateErrorNotificationResponse(NotificationPreferenceRsp notificationPreferenceRsp) {
+        notificationPreferenceRsp.setStatus("ERROR");
+        notificationPreferenceRsp.setStatusDescription("Notification Failed");
     }
 
-    private void populateSuccessNotificationResponse(NotificationPreferences notificationPreference, NotificationRes notificationRes) {
-        notificationRes.setEmailPreferenceFlag(notificationPreference.isEmailPreferenceFlag());
-        notificationRes.setSmsPreferenceFlag(notificationPreference.isSmsPreferenceFlag());
-        notificationRes.setEmailAddress(notificationPreference.getEmailAddress());
-        notificationRes.setPhoneNumber(notificationPreference.getPhoneNumber());
-        notificationRes.setStatus("SUCCESS");
-        notificationRes.setStatusDescription("Notification Received Successfully");
+    private void populateSuccessNotificationResponse(NotificationPreferences notificationPreference, NotificationPreferenceRsp notificationPreferenceRsp) {
+        notificationPreferenceRsp.setEmailPreferenceFlag(notificationPreference.isEmailPreferenceFlag());
+        notificationPreferenceRsp.setSmsPreferenceFlag(notificationPreference.isSmsPreferenceFlag());
+        notificationPreferenceRsp.setEmailAddress(notificationPreference.getEmailAddress());
+        notificationPreferenceRsp.setPhoneNumber(notificationPreference.getPhoneNumber());
+        notificationPreferenceRsp.setStatus("SUCCESS");
+        notificationPreferenceRsp.setStatusDescription("Notification Received Successfully");
     }
 
     private boolean existsNotificationPreference(NotificationPreferences notificationPreference) {

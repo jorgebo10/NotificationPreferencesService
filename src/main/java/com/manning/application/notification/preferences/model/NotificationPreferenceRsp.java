@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public final class NotificationRes {
+public final class NotificationPreferenceRsp {
     private String status;
     private String statusDescription;
     private Boolean smsPreferenceFlag;

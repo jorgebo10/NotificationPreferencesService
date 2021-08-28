@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
-public final class NotificationReq {
+public final class NotificationPreferenceReq {
     @NotEmpty
     private String customerId;
 }
